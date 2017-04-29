@@ -9,11 +9,12 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
     bool pickedUp = false;
     float lerpSpeed = 0.1f;
     float mDist = 0f;
+    private Rigidbody rigidBody;
 
     // Use this for initialization
     void Start()
     {
-
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -45,12 +46,20 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
         if (!pickedUp)
         {
             InputManager.Instance.PushModalInputHandler(this.gameObject);
-            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            if (rigidBody)
+            {
+                rigidBody.useGravity = false;
+            }
+            
         }
         else
         {
             InputManager.Instance.PopModalInputHandler();
-            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            if (rigidBody)
+            {
+                rigidBody.useGravity = true;
+            }
+            
         }
 
         TogglePickUpState();
