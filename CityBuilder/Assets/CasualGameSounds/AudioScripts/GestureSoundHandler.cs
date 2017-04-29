@@ -19,6 +19,9 @@ namespace Academy.HoloToolkit.Unity
             AudioClips = new AudioClip[(int)GestureSoundManager.GestureTypes.Count];
             AudioClips[(int)GestureSoundManager.GestureTypes.NavigationStarted] = NavigationStartedClip;
             AudioClips[(int)GestureSoundManager.GestureTypes.NavigationUpdated] = NavigationUpdatedClip;
-	    }
+
+            //NavigationStartedClip = AudioClips[(int)GestureSoundManager.GestureTypes.NavigationStarted];
+            //NavigationUpdatedClip = AudioClips[(int)GestureSoundManager.GestureTypes.NavigationUpdated];
+        }
     }
 }
