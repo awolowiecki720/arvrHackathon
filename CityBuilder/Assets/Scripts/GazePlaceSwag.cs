@@ -21,7 +21,11 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
     {
         if (AirTapSwag.AirTap)
         {
-            pickedUp = true;
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2f, 1 << gameObject.layer) && hit.collider.gameObject == gameObject)
+            {
+                pickedUp = true;
+            }
         }
 
         if (pickedUp)
@@ -30,6 +34,8 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
             Vector3 pos = Vector3.zero;
 
             pos = camPos + Camera.main.transform.forward * mDist;
+
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, pos, lerpSpeed);
         }
        
     }
