@@ -43,9 +43,15 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
     public void OnInputClicked(InputClickedEventData eventData)
     {
         if (!pickedUp)
+        {
             InputManager.Instance.PushModalInputHandler(this.gameObject);
+            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+        }
         else
+        {
             InputManager.Instance.PopModalInputHandler();
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
 
         TogglePickUpState();
     }
