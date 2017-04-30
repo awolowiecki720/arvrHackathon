@@ -8,9 +8,15 @@ public class CubeSpawner : MonoBehaviour {
     public List<GameObject> spawnedCubes;
     public bool isPlacing = false;
 
+    private List<Color> colors = new List<Color>();
+    private int colorIndex;
+
 	// Use this for initialization
 	void Start () {
         spawnedCubes = new List<GameObject>();
+        colors.Add(Color.red);
+        colors.Add(Color.blue);
+        colors.Add(Color.green);
 	}
 	
 	// Update is called once per frame
@@ -37,6 +43,12 @@ public class CubeSpawner : MonoBehaviour {
             GameObject cube = Instantiate(cubePrefab);
             
             cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5;
+            Renderer r = cube.GetComponent<Renderer>();
+            //if (r)
+            //{
+            r.material.color = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.Count;
+            //}
             spawnedCubes.Add(cube);
         }
         else if(AirTapSwag.AirTap && isPlacing)
