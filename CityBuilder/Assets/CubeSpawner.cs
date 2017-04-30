@@ -21,15 +21,10 @@ public class CubeSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("hello!!!");
         if (AirTapSwag.AirTap)
         {
             RaycastHit hit;
             Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 200f, 1 << gameObject.layer);
-            //hit.collider.
-
-            Debug.Log(hit.collider);
-            //isPlacing = true;
 
             foreach (GameObject spawnedCube in spawnedCubes)
             {
@@ -42,13 +37,11 @@ public class CubeSpawner : MonoBehaviour {
 
             GameObject cube = Instantiate(cubePrefab);
             
-            cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5;
+            cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
             Renderer r = cube.GetComponent<Renderer>();
-            //if (r)
-            //{
             r.material.color = colors[colorIndex];
             colorIndex = (colorIndex + 1) % colors.Count;
-            //}
+
             spawnedCubes.Add(cube);
         }
         else if(AirTapSwag.AirTap && isPlacing)
