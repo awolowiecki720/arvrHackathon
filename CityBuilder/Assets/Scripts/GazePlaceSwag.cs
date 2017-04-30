@@ -6,10 +6,10 @@ using System;
 
 public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
 {
-    bool pickedUp = false;
+    public bool pickedUp = false;
     float lerpSpeed = 0.1f;
     float mDist = 0f;
-    private Rigidbody rigidBody;
+    public Rigidbody rigidBody;
 
     // Use this for initialization
     void Start()
@@ -45,24 +45,32 @@ public class GazePlaceSwag : MonoBehaviour, IInputClickHandler
     {
         if (!pickedUp)
         {
-            InputManager.Instance.PushModalInputHandler(this.gameObject);
-            if (rigidBody)
-            {
-                rigidBody.useGravity = false;
-            }
+            PickUp();
             
         }
         else
         {
-            InputManager.Instance.PopModalInputHandler();
-            if (rigidBody)
-            {
-                rigidBody.useGravity = true;
-            }
-            
+
+            Drop();
         }
 
         TogglePickUpState();
+    }
+    public void PickUp()
+    {
+        InputManager.Instance.PushModalInputHandler(this.gameObject);
+        if (rigidBody)
+        {
+            rigidBody.useGravity = false;
+        }
+    }
+    public void Drop()
+    {
+        InputManager.Instance.PopModalInputHandler();
+        if (rigidBody)
+        {
+            rigidBody.useGravity = true;
+        }
     }
 
     private void TogglePickUpState()

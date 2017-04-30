@@ -13,7 +13,7 @@ namespace HoloToolkit.Unity.InputModule.Tests
     {
         private Material[] defaultMaterials;
 
-        private void Start()
+        private void Awake()
         {
             defaultMaterials = GetComponent<Renderer>().materials;
         }
