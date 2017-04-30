@@ -17,6 +17,9 @@ public class CubeSpawner : MonoBehaviour {
         colors.Add(Color.red);
         colors.Add(Color.blue);
         colors.Add(Color.green);
+        colors.Add(Color.magenta);
+        colors.Add(Color.cyan);
+        colors.Add(Color.yellow);
 	}
 	
 	// Update is called once per frame
